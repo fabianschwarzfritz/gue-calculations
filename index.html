@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  function calculateamv() {
+    var tanksize = document.getElementById("tanksize").value
+    var pressurebefore = document.getElementById("pressurebefore").value
+    var pressureafter = document.getElementById("pressureafter").value
+    var time = document.getElementById("time").value
+    var maxdepth = document.getElementById("maxdepth").value
+
+    var amv = (tanksize * (pressurebefore - pressureafter)) / ( time * (((maxdepth / 2) / 10) + 1) )
+    console.log(amv)
+    alert(amv)
+  }
+
+  document.getElementById("calculateamv").addEventListener("click", calculateamv)
+});
+</script>
+
+<h1>GUE AMV calculator</h1>
+
+<form action="javascript:void(0);">
+  Tank Size: <input id="tanksize" type="number" name="tanksize"><br>
+  Pressure before dive: <input id="pressurebefore" type="number" name="pressurebefore"><br>
+  Pressure after dive: <input id="pressureafter" type="number" name="pressureafter"><br>
+  Time: <input id="time" type="number" name="time"><br>
+  Maximum depth: <input id="maxdepth" type="number" name="depth"><br>
+  <input id="calculateamv" type="button" value="Calculate">
+</form>
+
+</body>
+</html>
