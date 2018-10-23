@@ -23,7 +23,17 @@ document.addEventListener('DOMContentLoaded', function () {
 <h1>GUE AMV calculator</h1>
 
 <form action="javascript:void(0);">
-  Tank Size: <input id="tanksize" type="number" name="tanksize"><br>
+  Tank Size: <select id="tanksize">
+    <option value="10">S10</option>
+    <option value="11">S11</option>
+    <option value="12">S12</option>
+    <option value="15">S15</option>
+    <option value="14<">D7</option>
+    <option value="17">D8.5</option>
+    <option value="20">D10</option>
+    <option value="24">D12</option>
+    <option value="30">D15</option>
+  </select><br>
   Pressure before dive: <input id="pressurebefore" type="number" name="pressurebefore"><br>
   Pressure after dive: <input id="pressureafter" type="number" name="pressureafter"><br>
   Time: <input id="time" type="number" name="time"><br>
