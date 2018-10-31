@@ -4,23 +4,37 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  function calculateamv() {
-    var tanksize = document.getElementById("tanksize").value
-    var pressurebefore = document.getElementById("pressurebefore").value
-    var pressureafter = document.getElementById("pressureafter").value
-    var time = document.getElementById("time").value
-    var maxdepth = document.getElementById("maxdepth").value
+  function readValue(id) {
+    return document.getElementById(id).value
+  }
 
-    var amv = (tanksize * (pressurebefore - pressureafter)) / ( time * (((maxdepth / 2) / 10) + 1) )
-    console.log(amv)
-    alert(amv)
+  function calculateamv() {
+    var values = {}
+    var fields = ["tanksize", "pressurebefore", "pressureafter", "time", "maxdepth"]
+
+    invalidField = false
+    fields.forEach(function(field) {
+      values[field] = readValue(field)
+      if(!values[field]) {
+        invalidField = true
+      }
+    })
+
+    if(invalidField) {
+      alert("Please fill in all necessary fields")
+      return
+    }
+
+    var amv = (values["tanksize"] * (values["pressurebefore"] - values["pressureafter"]))
+              / ( values["time"] * (((values["maxdepth"] / 2) / 10) + 1) )
+    alert("Your average gas usage: " + amv + " l/min")
   }
 
   document.getElementById("calculateamv").addEventListener("click", calculateamv)
 });
 </script>
 
-<h1>GUE AMV calculator</h1>
+<h1>GUE Average Gas Usage Calculator</h1>
 
 <form action="javascript:void(0);">
   Tank Size: <select id="tanksize">
