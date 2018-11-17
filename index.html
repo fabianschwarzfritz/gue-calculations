@@ -2,6 +2,14 @@
 <html>
 <body>
 
+<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous">
+</script>
+<script src="semantic/dist/semantic.min.js"></script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   function readValue(id) {
@@ -33,6 +41,15 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById("calculateamv").addEventListener("click", calculateamv)
 });
 </script>
+
+<button class="ui button active">Following</button>
+
+<button class="ui primary button">
+  Save
+</button>
+<button class="ui button">
+  Discard
+</button>
 
 <h1>GUE Edge</h1>
 <b>G</b>oal		Ziel und Plan</br>
@@ -90,7 +107,77 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>AMV = Verbrauchtes Gasvolumen (bar l) / Tauchzeit (min) * Durchschnittstiefe (m)</p>
 <p>AMV = (Druck vorher (bar) - Druch nachher (bar)) * Flaschengroesse (l) / Tauchzeit (min) * Durchschnittstiefe in Bar (bar)</p>
 
-<!-- <h1>Minimum Gas Tabelle</h1> -->
+<h1>Minimum Gas Table</h1>
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>CAT</th>
+      <th>Depth</th>
+      <th>Single 10</th>
+      <th>Single 11</th>
+      <th>Single 12</th>
+      <th>Single 15</th>
+      <th>Double 7</th>
+      <th>Double 8.5</th>
+      <th>Double 10</th>
+      <th>Double 11</th>
+      <th>Double 12</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>40 l/min * 1,5 bar * 5 min = 300 liter</td>
+      <td>10 meter</td>
+      <td>40 bar</td>
+      <td>40 bar</td>
+      <td>40 bar</td>
+      <td>40 bar</td>
+      <td>40 bar</td>
+      <td>40 bar</td>
+      <td>40 bar</td>
+      <td>40 bar</td>
+      <td>40 bar</td>
+    </tr>
+    <tr>
+      <td>40 l/min * 2 bar * 8 min = 640 liter</td>
+      <td>20 meter</td>
+      <td>70 bar</td>
+      <td>60 bar</td>
+      <td>60 bar</td>
+      <td>50 bar</td>
+      <td>60 bar</td>
+      <td>40 bar</td>
+      <td>40 bar</td>
+      <td>40 bar</td>
+      <td>40 bar</td>
+    </tr>
+    <tr>
+      <td>40 l/min * 2,5 bar * 11 min = 1100 liter</td>
+      <td>30 meter</td>
+      <td>110 bar</td>
+      <td>100 bar</td>
+      <td>100 bar</td>
+      <td>80 bar</td>
+      <td>80 bar</td>
+      <td>70 bar</td>
+      <td>60 bar</td>
+      <td>50 bar</td>
+      <td>50 bar</td>
+    </tr>
+  </tbody>
+  <p>
+  Example for CAT calculation:<br>
+  C - Consumption<br>
+  A - Average Pressure<br>
+  T - Time<br><br>
+  Example: 30 meter<br><br>
+
+  C = 20 l/min AMV * 2 = 40 l/min<br>
+  A = (4 bar + 1 bar) / 2 = 2,5 bar<br>
+  T = 30 m / 3 + 1 min = 11 min<br>
+  </p>
+  <p>We always use at 40 bar for minimum gar, because gauges may be inaccurate with low pressure.</p>
+</table>
 
 </body>
 </html>
