@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <thead>
     <tr>
       <th>CAT</th>
-      <th>Depth</th>
+      <th>Tiefe</th>
       <th>Single 10</th>
       <th>Single 11</th>
       <th>Single 12</th>
@@ -157,17 +157,20 @@ document.addEventListener('DOMContentLoaded', function () {
     </tr>
   </tbody>
   <p>
-  Example for CAT calculation:<br>
+  Beispielrechnung für CAT:<br>
   C - Consumption<br>
   A - Average Pressure<br>
   T - Time<br><br>
-  Example: 30 meter<br><br>
+  Beispiel hier bei 30 meter<br><br>
 
   C = 20 l/min AMV * 2 = 40 l/min<br>
   A = (4 bar + 1 bar) / 2 = 2,5 bar<br>
   T = 30 m / 3 + 1 min = 11 min<br>
   </p>
-  <p>We always use at 40 bar for minimum gar, because gauges may be inaccurate with low pressure.</p>
+  <p>
+    Wenn der berechnete Druck geringer ist als 40 bar, gehen wir trotzdem von einem mindestdruck von Minimum Gas 40 bar aus.
+    Finimeter können ungenau sein und viele Finimeters messen unter 40 bar wesentlich ungenauer.
+  </p>
 </table>
 
 </body>
