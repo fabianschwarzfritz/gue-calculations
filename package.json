@@ -4,8 +4,7 @@
   "description": "GUE Calculations",
   "main": "index.js",
   "dependencies": {
-    "semantic-ui": "^2.4.2",
-    "vue": "^2.5.17"
+    "semantic-ui": "^2.4.2"
   },
   "devDependencies": {},
   "scripts": {
