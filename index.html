@@ -8,6 +8,27 @@ document.addEventListener('DOMContentLoaded', function () {
     return document.getElementById(id).value
   }
 
+  function displayResultInTable(result) {
+    console.log(result)
+    var table = document.getElementById("result")
+    for(var [key, value] of Object.entries(result)) {
+      console.log(key, value)
+      var cellkey = document.createTextNode(key)
+      var columnkey = document.createElement("td")
+      columnkey.appendChild(cellkey)
+
+      var cellvalue = document.createTextNode(value)
+      var columnvalue = document.createElement("td")
+      columnvalue.appendChild(cellvalue)
+
+      var row = document.createElement("tr")
+      row.appendChild(columnkey)
+      row.appendChild(columnvalue)
+
+      table.appendChild(row)
+    }
+  }
+
   function calculateamv() {
     var values = {}
     var fields = ["tanksize", "pressurebefore", "pressureafter", "time", "maxdepth"]
@@ -28,6 +49,15 @@ document.addEventListener('DOMContentLoaded', function () {
     var amv = (values["tanksize"] * (values["pressurebefore"] - values["pressureafter"]))
               / ( values["time"] * (((values["maxdepth"] / 2) / 10) + 1) )
     alert("Your average gas usage: " + amv + " l/min")
+    var result = {
+      tanksize: values["tanksize"],
+      pressurebefore: values["pressurebefore"],
+      pressureafter: values["pressureafter"],
+      time: values["time"],
+      maxdepth: values["maxdepth"],
+      amv: amv
+    }
+    displayResultInTable(result)
   }
 
   document.getElementById("calculateamv").addEventListener("click", calculateamv)
@@ -84,6 +114,8 @@ document.addEventListener('DOMContentLoaded', function () {
   Maximum depth: <input id="maxdepth" type="number" name="depth"><br>
   <input id="calculateamv" type="button" value="Calculate">
 </form>
+<table id="result">
+</table>
 
 <h2>AMV Formel</h2>
 
