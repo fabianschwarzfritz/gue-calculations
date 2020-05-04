@@ -11,13 +11,13 @@ document.addEventListener('DOMContentLoaded', function () {
   function displayResultInTable(result) {
     console.log(result)
     var table = document.getElementById("result")
-    for(var [key, value] of Object.entries(result)) {
-      console.log(key, value)
-      var cellkey = document.createTextNode(key)
+    result.forEach(function(entry) {
+      console.log(entry)
+      var cellkey = document.createTextNode(entry.name)
       var columnkey = document.createElement("td")
       columnkey.appendChild(cellkey)
 
-      var cellvalue = document.createTextNode(value)
+      var cellvalue = document.createTextNode(entry.value + " " + entry.unit)
       var columnvalue = document.createElement("td")
       columnvalue.appendChild(cellvalue)
 
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
       row.appendChild(columnvalue)
 
       table.appendChild(row)
-    }
+    })
   }
 
   function calculateamv() {
@@ -48,15 +48,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var amv = (values["tanksize"] * (values["pressurebefore"] - values["pressureafter"]))
               / ( values["time"] * (((values["maxdepth"] / 2) / 10) + 1) )
+    amv = Math.round(amv)
     alert("Your average gas usage: " + amv + " l/min")
-    var result = {
-      tanksize: values["tanksize"],
-      pressurebefore: values["pressurebefore"],
-      pressureafter: values["pressureafter"],
-      time: values["time"],
-      maxdepth: values["maxdepth"],
-      amv: amv
-    }
+    var result = [{
+      name: "Tank size",
+      value: values["tanksize"],
+      unit: "liters"
+    }, {
+      name: "Pressure before dive",
+      value: values["pressurebefore"],
+      unit: "bar"
+    }, {
+      name: "Pressure after dive",
+      value: values["pressureafter"],
+      unit: "bar"
+    }, {
+      name: "Time",
+      value: values["time"],
+      unit: "minutes",
+    }, {
+      name: "Maximum depth",
+      value: values["maxdepth"],
+      unit: "meters"
+    }, {
+      name: "Atem minuten volumen",
+      value: amv,
+      unit: "l/min"
+    }]
     displayResultInTable(result)
   }
 
