@@ -1,0 +1,16 @@
+body {
+  background-color: lightblue;
+}
+
+.parameter-input form label,input,select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+@media only screen and (min-width: 768px) {
+  body { 
+    background-color: lightgreen;
+  }
+}

@@ -2,6 +2,9 @@
 <html>
 <body>
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="style.css"/>
+
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   function readValue(id) {
@@ -82,6 +85,35 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
+<div class="parameter-input">
+  <h1>GUE Average Gas Usage Calculator</h1>
+  <form action="javascript:void(0);">
+    <label>Tank Size:</label>
+    <select id="tanksize">
+      <option value="10">S10</option>
+      <option value="11">S11</option>
+      <option value="12">S12</option>
+      <option value="15">S15</option>
+      <option value="14">D7</option>
+      <option value="17">D8.5</option>
+      <option value="20">D10</option>
+      <option value="24">D12</option>
+      <option value="30">D15</option>
+    </select><br>
+    <label>Pressure before dive: </label>
+    <input id="pressurebefore" type="number" name="pressurebefore"><br>
+    <label>Pressure after dive: </label>
+    <input id="pressureafter" type="number" name="pressureafter"><br>
+    <label>Time: </label>
+    <input id="time" type="number" name="time"><br>
+    <label>Maximum depth: </label>
+    <input id="maxdepth" type="number" name="depth"><br>
+    <input id="calculateamv" type="button" value="Calculate">
+  </form>
+  <table id="result">
+  </table>
+</div>
+
 <h1>GUE Edge</h1>
 <b>G</b>oal		Ziel und Plan</br>
 <b>U</b>nified Team 	Teamreihenfolge und Aufgaben</br>
@@ -111,29 +143,6 @@ document.addEventListener('DOMContentLoaded', function () {
   <li>Longhose frei</li>
   <li>Bubble check</li>
 </ul>
-
-<h1>GUE Average Gas Usage Calculator</h1>
-
-<form action="javascript:void(0);">
-  Tank Size: <select id="tanksize">
-    <option value="10">S10</option>
-    <option value="11">S11</option>
-    <option value="12">S12</option>
-    <option value="15">S15</option>
-    <option value="14">D7</option>
-    <option value="17">D8.5</option>
-    <option value="20">D10</option>
-    <option value="24">D12</option>
-    <option value="30">D15</option>
-  </select><br>
-  Pressure before dive: <input id="pressurebefore" type="number" name="pressurebefore"><br>
-  Pressure after dive: <input id="pressureafter" type="number" name="pressureafter"><br>
-  Time: <input id="time" type="number" name="time"><br>
-  Maximum depth: <input id="maxdepth" type="number" name="depth"><br>
-  <input id="calculateamv" type="button" value="Calculate">
-</form>
-<table id="result">
-</table>
 
 <h2>AMV Formel</h2>
 
