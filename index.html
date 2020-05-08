@@ -7,9 +7,19 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  function readValue(id) {
-    return document.getElementById(id).value
+  var fields = ["tanksize", "pressurebefore", "pressureafter", "time", "depth"]
+
+  function bootstrap() {
+    fields.forEach(function(field) {
+      var label = document.querySelectorAll("label[class^=label-"+field);
+      var input = document.getElementById(field);
+      input.addEventListener("change", function(e) {
+        var value = e.target.value;
+        label[0].innerHTML = value;
+      });
+    })
   }
+  bootstrap();
 
   function displayResultInTable(result) {
     console.log(result)
@@ -34,11 +44,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function calculateamv() {
     var values = {}
-    var fields = ["tanksize", "pressurebefore", "pressureafter", "time", "maxdepth"]
 
     invalidField = false
     fields.forEach(function(field) {
-      values[field] = readValue(field)
+      values[field] = input.value
       if(!values[field]) {
         invalidField = true
       }
@@ -50,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     var amv = (values["tanksize"] * (values["pressurebefore"] - values["pressureafter"]))
-              / ( values["time"] * (((values["maxdepth"] / 2) / 10) + 1) )
+              / ( values["time"] * (((values["depth"] / 2) / 10) + 1) )
     amv = Math.round(amv)
     alert("Your average gas usage: " + amv + " l/min")
     var result = [{
@@ -71,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
       unit: "minutes",
     }, {
       name: "Maximum depth",
-      value: values["maxdepth"],
+      value: values["depth"],
       unit: "meters"
     }, {
       name: "Atem minuten volumen",
@@ -100,14 +109,14 @@ document.addEventListener('DOMContentLoaded', function () {
       <option value="24">D12</option>
       <option value="30">D15</option>
     </select><br>
-    <label>Pressure before dive: </label>
-    <input id="pressurebefore" type="number" name="pressurebefore"><br>
-    <label>Pressure after dive: </label>
-    <input id="pressureafter" type="number" name="pressureafter"><br>
-    <label>Time: </label>
-    <input id="time" type="number" name="time"><br>
-    <label>Maximum depth: </label>
-    <input id="maxdepth" type="number" name="depth"><br>
+    <label>Pressure before dive: </label><label class="label-pressurebefore">40</label>
+    <input id="pressurebefore" name="pressurebefore" type="range" min="40" max="250" value="40" step="10"><br>
+    <label>Pressure after dive: </label><label class="label-pressureafter">40</label>
+    <input id="pressureafter" name="pressureafter" type="range" min="40" max="200" value="40" step="10"><br>
+    <label>Time: </label><label class="label-time">10</label>
+    <input id="time" name="time" type="range" min="10" max="180" value="10" step="5"><br>
+    <label>Maximum depth: </label><label class="label-depth">3</label>
+    <input id="depth" name="depth" type="range" min="3" max="30" value="3"><br>
     <button id="calculateamv">Calculate</button>
   </form>
   <table id="result">
