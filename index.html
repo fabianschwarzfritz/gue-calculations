@@ -2,7 +2,7 @@
 <html>
 <body>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <link rel="stylesheet" type="text/css" href="style.css"/>
 
 <script>
@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     invalidField = false
     fields.forEach(function(field) {
+      var input = document.getElementById(field);
       values[field] = input.value
       if(!values[field]) {
         invalidField = true
@@ -123,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
   </table>
 </div>
 
-<h1>GUE Edge</h1>
+<!-- <h1>GUE Edge</h1>
 <b>G</b>oal		Ziel und Plan</br>
 <b>U</b>nified Team 	Teamreihenfolge und Aufgaben</br>
 <b>E</b>qipment 	Gesamter Equipment Check*</br>
@@ -231,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function () {
     Wenn der berechnete Druck geringer ist als 40 bar, gehen wir trotzdem von einem Mindestdruck von Minimum Gas 40 bar aus.<br>
     Finimeter können ungenau sein und viele Finimeters messen unter 40 bar wesentlich ungenauer.
   </p>
-</table>
+</table> -->
 
 </body>
 </html>
