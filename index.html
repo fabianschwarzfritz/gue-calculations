@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function displayResultInTable(result) {
     console.log(result)
     var table = document.getElementById("result")
+    table.innerHTML = ""
     result.forEach(function(entry) {
       console.log(entry)
       var cellkey = document.createTextNode(entry.name)
@@ -42,21 +43,25 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   }
 
-  function calculateamv() {
-    var values = {}
-
-    invalidField = false
+  function validateField() {
+    var values = {};
     fields.forEach(function(field) {
       var input = document.getElementById(field);
       values[field] = input.value
       if(!values[field]) {
-        invalidField = true
+        input.setAttribute("class", "error")
+        throw new Error("Invalid field: ", field);
       }
     })
+    return values
+  }
 
-    if(invalidField) {
-      alert("Please fill in all necessary fields")
-      return
+  function calculateamv() {
+    var values = {};
+    try {
+      values = validateField();
+    } catch(err) {
+      return;
     }
 
     var amv = (values["tanksize"] * (values["pressurebefore"] - values["pressureafter"]))

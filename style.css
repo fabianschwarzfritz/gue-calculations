@@ -21,6 +21,38 @@ body {
   font-size: 16px;
 }
 
+.parameter-input form input {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  background: white;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.parameter-input form input:hover {
+  opacity: 1;
+}
+
+.parameter-input form input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background: lightblue;
+}
+
+.parameter-input form input::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  background: lightblue;
+}
+.parameter-input form input .error {
+  background: red;
+}
+
 @media only screen and (min-width: 768px) {
   body { 
     background-color: lightgreen;
