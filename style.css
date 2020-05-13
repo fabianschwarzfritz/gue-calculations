@@ -1,5 +1,6 @@
 body {
   background-color: lightblue;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .parameter-input form label,input,select {
@@ -47,16 +48,12 @@ body {
 .parameter-input form input::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 15px;
-  height: 15px;
-  background: lightblue;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: darkcyan;
 }
 
-.parameter-input form input::-moz-range-thumb {
-  width: 15px;
-  height: 15px;
-  background: lightblue;
-}
 .parameter-input form input .error {
   background: red;
 }
