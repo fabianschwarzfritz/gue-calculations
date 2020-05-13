@@ -21,6 +21,16 @@ body {
   font-size: 16px;
 }
 
+.parameter-input form select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  background: white;
+  outline: none;
+  opacity: 0.7;
+}
+
 .parameter-input form input {
   -webkit-appearance: none;
   width: 100%;
@@ -28,8 +38,6 @@ body {
   background: white;
   outline: none;
   opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
 }
 
 .parameter-input form input:hover {

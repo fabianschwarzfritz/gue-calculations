@@ -67,7 +67,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var amv = (values["tanksize"] * (values["pressurebefore"] - values["pressureafter"]))
               / ( values["time"] * (((values["depth"] / 2) / 10) + 1) )
     amv = Math.round(amv)
-    alert("Your average gas usage: " + amv + " l/min")
     var result = [{
       name: "Tank size",
       value: values["tanksize"],
@@ -101,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <div class="parameter-input">
-  <h1>GUE Average Gas Usage Calculator</h1>
+  <h1>GUE Calculator</h1>
   <form action="javascript:void(0);">
     <label>Tank Size:</label>
     <select id="tanksize">
@@ -112,16 +111,16 @@ document.addEventListener('DOMContentLoaded', function () {
       <option value="14">D7</option>
       <option value="17">D8.5</option>
       <option value="20">D10</option>
-      <option value="24">D12</option>
+      <option value="24" selected="selected">D12</option>
       <option value="30">D15</option>
     </select><br>
-    <label>Pressure before dive: </label><label class="label-pressurebefore">40</label>
+    <label>Pressure before dive: </label><label class="label-pressurebefore">40</label><label> bar</label>
     <input id="pressurebefore" name="pressurebefore" type="range" min="40" max="250" value="40" step="10"><br>
-    <label>Pressure after dive: </label><label class="label-pressureafter">40</label>
+    <label>Pressure after dive: </label><label class="label-pressureafter">40</label><label> bar</label>
     <input id="pressureafter" name="pressureafter" type="range" min="40" max="200" value="40" step="10"><br>
-    <label>Time: </label><label class="label-time">10</label>
+    <label>Time: </label><label class="label-time">10</label><label> minutes</label>
     <input id="time" name="time" type="range" min="10" max="180" value="10" step="5"><br>
-    <label>Maximum depth: </label><label class="label-depth">3</label>
+    <label>Maximum depth: </label><label class="label-depth">3</label><label> meters</label>
     <input id="depth" name="depth" type="range" min="3" max="30" value="3"><br>
     <button id="calculateamv">Calculate</button>
   </form>
