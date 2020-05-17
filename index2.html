@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+  <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+</head>
+<body>
+
+<script>
+document.addEventListener('init', function(event) {
+  var fields = ["tanksize", "pressurebefore", "pressureafter", "time", "depth"]
+
+  function bootstrap() {
+    fields.forEach(function(field) {
+      console.log(field)
+      var label = document.querySelectorAll("label[id^=label-"+field);
+      var input = document.getElementById(field);
+      console.log(label)
+      console.log(input)
+      input.addEventListener("change", function(e) {
+        var value = e.target.value;
+        label[0].innerHTML = value;
+      });
+    })
+  }
+  bootstrap();
+
+  function validateField() {
+    var values = {};
+    fields.forEach(function(field) {
+      var input = document.getElementById(field);
+      values[field] = input.value
+      if(!values[field]) {
+        input.setAttribute("class", "error")
+        throw new Error("Invalid field: ", field);
+      }
+    })
+    return values
+  }
+
+  function plan() {
+    var values = validateField();
+    var amv = (values["tanksize"] * (values["pressurebefore"] - values["pressureafter"]))
+              / ( values["time"] * (((values["depth"] / 2) / 10) + 1) )
+    amv = Math.round(amv)
+    var result = [{
+      name: "Tank size",
+      value: values["tanksize"],
+      unit: "liters"
+    }, {
+      name: "Pressure before dive",
+      value: values["pressurebefore"],
+      unit: "bar"
+    }, {
+      name: "Pressure after dive",
+      value: values["pressureafter"],
+      unit: "bar"
+    }, {
+      name: "Time",
+      value: values["time"],
+      unit: "minutes",
+    }, {
+      name: "Maximum depth",
+      value: values["depth"],
+      unit: "meters"
+    }, {
+      name: "Atem minuten volumen",
+      value: amv,
+      unit: "l/min"
+    }];
+    return result;
+  }
+
+  var page = event.target;
+  if (page.id === 'input') {
+    page.querySelector('#push-button').onclick = function() {
+      var diveParameters = plan();
+      document.querySelector('#navigator').pushPage('output.html', 
+        {data: diveParameters});
+    };
+  } else if (page.id === 'output') {
+    // page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
+    var resultpage = page.querySelector("[id='result']");
+    var template = '<ons-list-item><div class="left">{{name}}</div><div class="right">{{value}} {{unit}}</div></ons-list-item>'
+
+    var list = document.createElement('ons-list')
+    console.log(page.data)
+    for (var prop in page.data) {
+      var data = page.data[prop]
+      console.log(data)
+      var div = document.createElement('div')
+      div.innerHTML = template.replace('{{name}}', data.name).replace('{{value}}', data.value).replace('{{unit}}', data.unit);
+      var newItem = div.firstChild
+      list.appendChild(newItem)
+    }
+    resultpage.innerHTML = '';
+    resultpage.appendChild(list);
+  }
+});
+</script>
+  <ons-navigator swipeable id="navigator" page="input.html"></ons-navigator>
+  <template id="input.html">
+    <ons-page id="input">
+      <ons-toolbar>
+        <div class="center">Dive Calculation</div>
+      </ons-toolbar>
+      <ons-list>
+        <ons-list-item>
+          <ons-row>
+            <select id="tanksize">
+              <option value="10">S10</option>
+              <option value="11">S11</option>
+              <option value="12">S12</option>
+              <option value="15">S15</option>
+              <option value="14">D7</option>
+              <option value="17">D8.5</option>
+              <option value="20">D10</option>
+              <option value="24" selected="selected">D12</option>
+              <option value="30">D15</option>
+            </select>
+          </ons-row>
+          <ons-row>
+          <label id="label-tanksize">24</label>
+          </ons-row>
+        </ons-list-item>
+        <ons-list-item>
+          Pressure before dive
+          <ons-range id="pressurebefore" 
+            style="width: 100%;"
+            min="40" max="250" value="40" step="10"></ons-range>
+          <label id="label-pressurebefore">40</label> bar
+        </ons-list-item>
+        <ons-list-item>
+          Pressure after dive
+          <ons-range id="pressureafter"
+            style="width: 100%;" 
+            min="40" max="250" value="40" step="10"></ons-range>
+          <label id="label-pressureafter">40</label> bar
+        </ons-list-item>
+        <ons-list-item>
+          Time
+          <ons-range id="time"
+            style="width: 100%;"
+            min="10" max="180" value="10" step="5"></ons-range>
+          <label id="label-time">10</label> <label>minutes</label>
+        </ons-list-item>
+        <ons-list-item>
+          Maximum depth
+          <ons-range id="depth"
+            min="3" max="30" value="3"
+            style="width: 100%;"></ons-range>
+          <label id="label-depth">3</label> meters
+        </ons-list-item>    
+      </ons-list>
+      <ons-button id="push-button">Plan</ons-button>
+    </ons-page>
+  </template>
+
+  <template id="output.html">
+    <ons-page id="output">
+      <ons-toolbar>
+        <div class="left"><ons-back-button>Plan</ons-back-button></div>
+        <div class="center">Dive Plan</div>
+      </ons-toolbar>
+      <div id="result"></div>
+    </ons-page>
+  </template>
+</body>
+</html>
