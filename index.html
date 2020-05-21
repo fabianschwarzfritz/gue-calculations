@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/fontawesome.min.js">
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
   <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
@@ -103,25 +105,25 @@ document.addEventListener('init', function(event) {
   <template id="input.html">
     <ons-page id="input">
       <ons-toolbar>
-        <div class="center">Dive Calculation</div>
+        <div class="center">Dive Calculation<i class="fa fa-drupal"></i></div>
       </ons-toolbar>
       <ons-list>
         <ons-list-item>
-          <ons-row>
+          <ons-row class="select-wrapper">
             <select id="tanksize">
-              <option value="10">S10</option>
-              <option value="11">S11</option>
-              <option value="12">S12</option>
-              <option value="15">S15</option>
-              <option value="14">D7</option>
-              <option value="17">D8.5</option>
-              <option value="20">D10</option>
-              <option value="24" selected="selected">D12</option>
-              <option value="30">D15</option>
+              <option value="10">Single 10</option>
+              <option value="11">Single 11</option>
+              <option value="12">Single 12</option>
+              <option value="15">Single 15</option>
+              <option value="14">Double 7</option>
+              <option value="17">Double 8.5</option>
+              <option value="20">Double 10</option>
+              <option value="24" selected="selected">Double 12</option>
+              <option value="30">Double 15</option>
             </select>
           </ons-row>
           <ons-row>
-          <label id="label-tanksize">24</label>
+            <label id="label-tanksize">24</label> liter
           </ons-row>
         </ons-list-item>
         <ons-list-item>
