@@ -37,3 +37,7 @@ select {
 select option {
   color: green;
 }
+
+label {
+  margin-right: 4px;
+}

@@ -109,6 +109,9 @@ document.addEventListener('init', function(event) {
       </ons-toolbar>
       <ons-list>
         <ons-list-item>
+          <label>Tank Size:</label>
+          <label id="label-tanksize">24</label>
+          <label>liters</label>
           <ons-row class="select-wrapper">
             <select id="tanksize">
               <option value="10">Single 10</option>
@@ -123,36 +126,39 @@ document.addEventListener('init', function(event) {
             </select>
           </ons-row>
           <ons-row>
-            <label id="label-tanksize">24</label> liter
           </ons-row>
         </ons-list-item>
         <ons-list-item>
-          Pressure before dive
+          <label>Pressure before dive:</label>
+          <label id="label-pressurebefore">40</label>
+          <label>bar</label>
           <ons-range id="pressurebefore" 
             style="width: 100%;"
             min="40" max="250" value="40" step="10"></ons-range>
-          <label id="label-pressurebefore">40</label> bar
         </ons-list-item>
         <ons-list-item>
-          Pressure after dive
+          <label>Pressure after dive:</label>
+          <label id="label-pressureafter">40</label>
+          <label>bar</label>
           <ons-range id="pressureafter"
             style="width: 100%;" 
             min="40" max="250" value="40" step="10"></ons-range>
-          <label id="label-pressureafter">40</label> bar
         </ons-list-item>
         <ons-list-item>
-          Time
+          <label>Time:</label>
+          <label id="label-time">10</label>
+          <label>minutes</label>
           <ons-range id="time"
             style="width: 100%;"
             min="10" max="180" value="10" step="5"></ons-range>
-          <label id="label-time">10</label> <label>minutes</label>
         </ons-list-item>
         <ons-list-item>
-          Maximum depth
+          <label>Maximum depth:</label>
+          <label id="label-depth">3</label>
+          <label>meters</label>
           <ons-range id="depth"
             min="3" max="30" value="3"
             style="width: 100%;"></ons-range>
-          <label id="label-depth">3</label> meters
         </ons-list-item>    
       </ons-list>
       <ons-button id="push-button" modifier="large">Plan</ons-button>
