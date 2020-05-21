@@ -20,7 +20,7 @@ document.addEventListener('init', function(event) {
       var input = document.getElementById(field);
       console.log(label)
       console.log(input)
-      input.addEventListener("change", function(e) {
+      input.addEventListener("input", function(e) {
         var value = e.target.value;
         label[0].innerHTML = value;
       });
