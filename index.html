@@ -11,7 +11,16 @@
 
 <script>
 document.addEventListener('init', function(event) {
-  var fields = ["tanksize", "pressurebefore", "pressureafter", "time", "depth", "gasstrategy"]
+  var fields = [
+    "tanksize",
+    "pressurebefore",
+    "pressureafter",
+    "time",
+    "depth",
+    "gasstrategy",
+    "scooter-speed",
+    "scooter-burn-time"
+  ];
 
   function bootstrap() {
     fields.forEach(function(field) {
@@ -92,9 +101,22 @@ document.addEventListener('init', function(event) {
   if (page.id === 'input') {
     page.querySelector('#push-button').onclick = function() {
       var diveParameters = plan();
-      document.querySelector('#navigator').pushPage('output.html', 
-        {data: diveParameters});
+      var navigator = document.querySelector('#navigator');
+      navigator.pushPage('output.html', { data: diveParameters });
     };
+    page.querySelector('#scooter-switch').onclick = function() {
+      var scooterListItems = document.querySelectorAll('.scooter-list-item');
+      if(scooterListItems.length > 0) {
+        console.log('clicked');
+        var hidden = scooterListItems[0].style.display === "none";
+        console.log('hidden', hidden);
+        if(hidden) {
+          scooterListItems.forEach((item) => { item.style.display = "block" });
+        } else {
+          scooterListItems.forEach((item) => { item.style.display = "none" });
+        }
+      }
+    }
   } else if (page.id === 'output') {
     // page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
     var resultpage = page.querySelector("[id='result']");
@@ -182,6 +204,30 @@ document.addEventListener('init', function(event) {
             min="3" max="30" value="3"
             style="width: 100%;"></ons-range>
         </ons-list-item>    
+        <ons-list-item>
+          <div class="center">
+            <label>Scooter dive</label>
+          </div>
+          <div class="right">
+            <ons-switch id="scooter-switch"></ons-switch>
+          </div>
+        </ons-list-item>
+        <ons-list-item class="scooter-list-item" style="display: none;">
+         <label>Burn time:</label> 
+         <label id="label-scooter-burn-time">30</label>
+         <label>minutes</label>
+          <ons-range id="scooter-burn-time"
+            min="30" max="300" value="30" step="10"
+            style="width: 100%;"></ons-range>
+        </ons-list-item>
+        <ons-list-item class="scooter-list-item" style="display: none">
+         <label>Scooter speed:</label> 
+         <label id="label-scooter-speed">10</label>
+         <label>m/min</label>
+          <ons-range id="scooter-speed"
+            min="10" max="100" value="10" step="10"
+            style="width: 100%;"></ons-range>
+        </ons-list-item>
       </ons-list>
       <ons-button id="push-button" modifier="large">Plan</ons-button>
     </ons-page>
